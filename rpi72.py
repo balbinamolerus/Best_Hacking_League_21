@@ -16,13 +16,12 @@ GPIO.setup(2, GPIO.IN)
 
 before = 0
 now = 0
+counter = 0
 try:
     while True:
         now = GPIO.input(2)
         if now == 1 and before == 0:
-            print(before, now, '\n alarm')
-        else:
-            print(before, now)
+            print('alarm')
         before = GPIO.input(2)
 except KeyboardInterrupt:
     print('Koniec')
