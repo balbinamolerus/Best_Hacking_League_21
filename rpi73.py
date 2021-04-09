@@ -15,7 +15,7 @@ client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 client.connect(broker_address, 1883)
 client.loop_start()
 
-dht_device = adafruit_dht.DHT11(board.D3)
+dht_device = adafruit_dht.DHT11(board.D2)
 
 # sensor_args = { '11': Adafruit_DHT.DHT11,
 #                 '22': Adafruit_DHT.DHT22,
