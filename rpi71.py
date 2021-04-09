@@ -19,7 +19,7 @@ while True:
     sleep(0.1)
     if x>20:
       print('alarm')
-      client.publish("BHL/MoveAlarm/Alarm", "1", qos=1, retain=True)
+      client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
       x=0
       print(t)
       sleep(20)
