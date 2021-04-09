@@ -36,5 +36,9 @@ try:
         else:
             print('Failed to get reading. Try again!')
             sys.exit(1)
+        if humidity>70:
+            client.publish("BHL/HumidityAlarm/Alarm", "1", qos=1, retain=True)
+        time.sleep(1)
+
 except KeyboardInterrupt:
     print('Koniec')
