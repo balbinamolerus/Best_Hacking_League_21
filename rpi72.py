@@ -30,7 +30,7 @@ try:
         html = urllib.request.urlopen('http://192.168.1.82/')
 
         htmltext = html.read()
-        htmltext = htmltext.decode('utf-8')
+        htmltext = int(htmltext.decode('utf-8'))
 
         print(type(htmltext),htmltext)
         # except:
