@@ -59,7 +59,7 @@ dioda.start(wypelnienie)  # Uruchomienie sygnału PWM
 
 try:
     while True:
-        wypelnienie += 5
+        wypelnienie = input("wypelnienie")
         if wypelnienie > 100:
             wypelnienie = 0
         dioda.ChangeDutyCycle(wypelnienie)  # Ustaw nową wartość wypełnienia
