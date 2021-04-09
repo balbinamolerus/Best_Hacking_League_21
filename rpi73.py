@@ -98,6 +98,7 @@ dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
 updown = True
 wypelnienie = 0
 oldBrightness = 0
+counter = 0
 try:
     while True:
         if Alarm:
@@ -111,7 +112,7 @@ try:
                 wypelnienie = wypelnienie - 2
                 if wypelnienie == 2:
                     updown = True
-            time.sleep(0.01)
+
         else:
             if Brightness != oldBrightness:
                 dioda.ChangeDutyCycle(Brightness)
@@ -121,18 +122,21 @@ try:
                 else:
                     client.publish("BHL/LED/getOn", "0", qos=1, retain=True)
                 oldBrightness = Brightness
+        counter += 1
+        if counter == 100:
+            temperature = dht_device.temperature
+            humidity = dht_device.humidity
+            if temperature != last_temperature:
+                client.publish("BHL/temperature", str(temperature), qos=1, retain=True)
 
-        temperature = dht_device.temperature
-        humidity = dht_device.humidity
-        if temperature != last_temperature:
-            client.publish("BHL/temperature", str(temperature), qos=1, retain=True)
+            if humidity != last_humidity:
+                client.publish("BHL/humidity", str(humidity), qos=1, retain=True)
 
-        if humidity != last_humidity:
-            client.publish("BHL/humidity", str(humidity), qos=1, retain=True)
+            last_humidity = humidity
+            last_temperature = temperature
+            counter = 0
 
-        last_humidity = humidity
-        last_temperature = temperature
-        print(temperature, humidity, "\n")
+        time.sleep(0.01)
 
 except KeyboardInterrupt:
     print('Koniec')
