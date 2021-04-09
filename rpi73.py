@@ -15,9 +15,14 @@ client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 client.connect(broker_address, 1883)
 client.loop_start()
 
-sensor_args = { '11': Adafruit_DHT.DHT11,
-                '22': Adafruit_DHT.DHT22,
-                '2302': Adafruit_DHT.AM2302 }
+sensor = Adafruit_DHT.DHT11
+
+# Set GPIO sensor is connected to
+gpio = 17
+
+# sensor_args = { '11': Adafruit_DHT.DHT11,
+#                 '22': Adafruit_DHT.DHT22,
+#                 '2302': Adafruit_DHT.AM2302 }
 # if len(sys.argv) == 3 and sys.argv[1] in sensor_args:
 #     sensor = sensor_args[sys.argv[1]]
 #     pin = sys.argv[2]
@@ -25,11 +30,11 @@ sensor_args = { '11': Adafruit_DHT.DHT11,
 #     print('Usage: sudo ./Adafruit_DHT.py [11|22|2302] <GPIO pin number>')
 #     print('Example: sudo ./Adafruit_DHT.py 2302 4 - Read from an AM2302 connected to GPIO pin #4')
 #     sys.exit(1)
-sensor = Adafruit_DHT.DHT11
+
 
 try:
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, '2')
+        humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
         if humidity is not None and temperature is not None:
             print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
         else:
