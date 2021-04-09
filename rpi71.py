@@ -15,6 +15,7 @@ while True:
       print("ALARM")
       x=0
       print(t)
+      sleep(5)
     t=t+1
 
 
