@@ -18,6 +18,8 @@ client.loop_start()
 before = 0
 now = 0
 counter = 0
+before_water = 0
+now_water = 0
 try:
     while True:
         now = GPIO.input(2)
@@ -30,11 +32,17 @@ try:
         html = urllib.request.urlopen('http://192.168.1.82/')
 
         htmltext = html.read()
-        htmltext = int(htmltext.decode('utf-8'))
+        now_water = int(htmltext.decode('utf-8'))
 
-        print(type(htmltext),htmltext)
+        # print(type(htmltext),htmltext)
+
+        if now_water > 300 and before_water <= 300:
+            print('water alarm')
+            client.publish("BHL/WaterAlarm/Alarm", "1", qos=1, retain=True)
         # except:
         #     print('error opening link')
+        before_water = now_water
+        time.sleep(1)
 
 
 except KeyboardInterrupt:
