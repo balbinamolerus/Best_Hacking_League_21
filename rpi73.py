@@ -60,8 +60,8 @@ Alarm = False
 Brightness = 0
 
 dht_device = adafruit_dht.DHT11(board.D26)
-last_temperature = dht_device.temperature
-last_humidity = dht_device.humidity
+
+
 
 
 def on_message(client, userdata, message):
@@ -99,6 +99,15 @@ updown = True
 wypelnienie = 0
 oldBrightness = 0
 counter = 0
+
+
+last_temperature = dht_device.temperature
+last_humidity = dht_device.humidity
+
+client.publish("BHL/temperature", str(last_temperature), qos=1, retain=True)
+client.publish("BHL/humidity", str(last_humidity), qos=1, retain=True)
+
+
 try:
     while True:
         if Alarm:
