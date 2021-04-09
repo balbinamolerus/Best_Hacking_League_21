@@ -14,7 +14,7 @@
 # client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 # client.connect(broker_address, 1883)
 # client.loop_start()
-#
+# #
 # dht_device = adafruit_dht.DHT11(board.D4)
 #
 # # sensor_args = { '11': Adafruit_DHT.DHT11,
@@ -47,11 +47,33 @@
 
 
 import RPi.GPIO as GPIO
+import paho.mqtt.client as mqtt
 import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(21, GPIO.OUT)
+
+Alarm = False
+def on_message(client, userdata, message):
+    global Alarm
+    if message.topic == "BHL/MoveAlarm/Alarm" or message.topic == "BHL/WaterAlarm/Alarm" or message.topic == "BHL/FireAlarm/Alarm" :
+        Alarm = True
+
+    if message.topic == "BHL/StopAlarm" and str(message.payload.decode("utf-8")) == "1":
+        Alarm = False
+
+
+
+broker_address = "192.168.1.200"
+client = mqtt.Client()
+client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
+client.on_message = on_message
+client.connect(broker_address, 1883)
+client.loop_start()
+
+client.subscribe(
+    [("BHL/MoveAlarm/Alarm", 1), ("BHL/FireAlarm/Alarm", 1), ("BHL/WaterAlarm/Alarm", 1),("BHL/StopAlarm", 1)])
 
 dioda = GPIO.PWM(21, 980)  # Nowa instancja PWM
 wypelnienienew = 0  # Wypełnienie sygnału PWM
@@ -61,7 +83,7 @@ dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
 updown = True
 wypelnienie = 0
 try:
-    while True:
+    while Alarm:
         if updown == True:
             dioda.ChangeDutyCycle(wypelnienie)
             wypelnienie = wypelnienie+2
