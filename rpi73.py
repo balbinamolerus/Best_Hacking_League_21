@@ -60,6 +60,8 @@ Alarm = False
 Brightness = 0
 
 dht_device = adafruit_dht.DHT11(board.D26)
+last_temperature = dht_device.temperature
+last_humidity = dht_device.humidity
 
 
 def on_message(client, userdata, message):
@@ -122,6 +124,14 @@ try:
 
         temperature = dht_device.temperature
         humidity = dht_device.humidity
+        if temperature != last_temperature:
+            client.publish("BHL/temperature", str(temperature), qos=1, retain=True)
+
+        if humidity != last_humidity:
+            client.publish("BHL/humidity", str(humidity), qos=1, retain=True)
+
+        last_humidity = humidity
+        last_temperature = temperature
         print(temperature, humidity, "\n")
 
 except KeyboardInterrupt:
