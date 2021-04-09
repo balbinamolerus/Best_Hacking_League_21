@@ -5,5 +5,13 @@ from gpiozero import MotionSensor
 pir = MotionSensor(4)
 
 while True:
-  print(pir.wait_for_motion())
-  sleep(0.1)
+  x=0
+  t=0
+  while t<1000:
+    if pir.wait_for_motion()==True:
+      x=x+1
+    sleep(0.1)
+    if x>10:
+      print("ALARM")
+
+
