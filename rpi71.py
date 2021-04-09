@@ -14,5 +14,6 @@ while True:
     if x>10:
       print("ALARM")
       x=0
+      print(t)
 
 
