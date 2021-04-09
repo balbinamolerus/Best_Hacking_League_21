@@ -11,5 +11,5 @@ client.loop_start()
 button = Button(21)
 
 while True:
-  if button.is_pressed:
+  if button.is_pressed == False:
       print("Alarm")
