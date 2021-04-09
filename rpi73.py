@@ -1,9 +1,9 @@
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import sys
-import Adafruit_DHT
 
 import time
+import board
 import urllib
 
 GPIO.setmode(GPIO.BCM)
@@ -15,10 +15,7 @@ client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 client.connect(broker_address, 1883)
 client.loop_start()
 
-sensor = Adafruit_DHT.DHT11
-
-# Set GPIO sensor is connected to
-gpio = 2
+dht_device = adafruit_dht.DHT11(board.D3)
 
 # sensor_args = { '11': Adafruit_DHT.DHT11,
 #                 '22': Adafruit_DHT.DHT22,
@@ -34,7 +31,8 @@ gpio = 2
 
 try:
     while True:
-        humidity, temperature = Adafruit_DHT.read_retry(sensor, gpio)
+        temperature = dht_device.temperature
+        humidity = dht_device.humidity
         if humidity is not None and temperature is not None:
             print('Temp={0:0.1f}*  Humidity={1:0.1f}%'.format(temperature, humidity))
         else:
