@@ -13,5 +13,6 @@ while True:
     sleep(0.1)
     if x>10:
       print("ALARM")
+      x=0
 
 
