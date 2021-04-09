@@ -72,7 +72,7 @@ try:
             wypelnienie = wypelnienie - 2
             if wypelnienie == 2:
                 updown = True
-        time.sleep(0.05)
+        time.sleep(0.01)
 except KeyboardInterrupt:
     print('Koniec')
 
