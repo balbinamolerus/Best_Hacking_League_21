@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import sys
-
+import adafruit_dht
 import time
 import board
 import urllib
