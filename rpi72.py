@@ -22,7 +22,7 @@ try:
         now = GPIO.input(2)
         if now == 1 and before == 0:
             print('alarm')
-            client.publish("FireAlarm/Alarm", "1", qos=1, retain=True)
+            client.publish("BHL/FireAlarm/Alarm", "1", qos=1, retain=True)
         before = GPIO.input(2)
 except KeyboardInterrupt:
     print('Koniec')
