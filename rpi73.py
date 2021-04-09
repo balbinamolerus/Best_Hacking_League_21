@@ -125,6 +125,7 @@ try:
         counter += 1
         if counter == 100:
             temperature = dht_device.temperature
+            print(temperature)
             humidity = dht_device.humidity
             if temperature != last_temperature:
                 client.publish("BHL/temperature", str(temperature), qos=1, retain=True)
