@@ -101,11 +101,11 @@ oldBrightness = 0
 counter = 0
 
 
-last_temperature = dht_device.temperature
-last_humidity = dht_device.humidity
+last_temperature = 100
+last_humidity = 100
 
-client.publish("BHL/temperature", str(last_temperature), qos=1, retain=True)
-client.publish("BHL/humidity", str(last_humidity), qos=1, retain=True)
+#client.publish("BHL/temperature", str(last_temperature), qos=1, retain=True)
+#client.publish("BHL/humidity", str(last_humidity), qos=1, retain=True)
 
 
 try:
