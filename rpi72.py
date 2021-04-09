@@ -27,7 +27,7 @@ try:
         before = GPIO.input(2)
 
         try:
-            html = urllib.urlopen('http://192.168.1.82')
+            html = urllib.urlopen('http://192.168.1.82/')
 
             htmltext = html.read()
             print(htmltext)
