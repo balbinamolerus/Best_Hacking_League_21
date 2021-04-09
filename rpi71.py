@@ -11,7 +11,7 @@ while True:
     if pir.wait_for_motion()==True:
       x=x+1
     sleep(0.1)
-    if x>30:
+    if x>20:
       print("ALARM")
       x=0
       print(t)
