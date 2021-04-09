@@ -30,7 +30,9 @@ try:
         html = urllib.request.urlopen('http://192.168.1.82/')
 
         htmltext = html.read()
-        print(type(htmltext))
+        htmltext = int.htmltext
+
+        print(type(htmltext),htmltext)
         # except:
         #     print('error opening link')
 
