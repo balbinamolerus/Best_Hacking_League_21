@@ -16,7 +16,7 @@ while True:
     while time<100:
         if button.is_pressed == False:
             x=x+1
-        sleep(0.1)
+        sleep(0.05)
         if x > 50:
             print('alarm')
             #client.publish("BHL/FattyAlarm/Alarm", "1", qos=1, retain=True)
