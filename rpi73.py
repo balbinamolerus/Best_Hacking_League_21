@@ -51,19 +51,21 @@ import time
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(12, GPIO.OUT)
+GPIO.setup(21, GPIO.OUT)
 
-dioda = GPIO.PWM(12, 50)  # Nowa instancja PWM
-wypelnienie = 0  # Wypełnienie sygnału PWM
-dioda.start(wypelnienie)  # Uruchomienie sygnału PWM
+dioda = GPIO.PWM(21, 8000)  # Nowa instancja PWM
+wypelnienienew = 0  # Wypełnienie sygnału PWM
+wypelnienieold = 0
+dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
 
 try:
     while True:
-        wypelnienie += 5
-        if wypelnienie > 100:
-            wypelnienie = 0
-        dioda.ChangeDutyCycle(wypelnienie)  # Ustaw nową wartość wypełnienia
-        time.sleep(0.05)
+        wypelnienienew = int(input("wypelnienie"))
+
+        if wypelnienienew!=wypelnienieold:
+            dioda.ChangeDutyCycle(wypelnienienew)  # Ustaw nową wartość wypełnienia
+        wypelnienieold = wypelnienienew
+        time.sleep(0.1)
 except KeyboardInterrupt:
     print('Koniec')
 
