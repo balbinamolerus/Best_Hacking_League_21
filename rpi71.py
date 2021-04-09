@@ -2,7 +2,7 @@ from time import sleep
 from gpiozero import MotionSensor
 
 
-pir = MotionSensor(2)
+pir = MotionSensor(4)
 
 while True:
   print(pir.wait_for_motion())
