@@ -58,14 +58,21 @@ wypelnienienew = 0  # Wypełnienie sygnału PWM
 wypelnienieold = 0
 dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
 
+updown = True
+wypelnienie = 0
 try:
     while True:
-        wypelnienienew = int(input("wypelnienie"))
-
-        if wypelnienienew!=wypelnienieold:
-            dioda.ChangeDutyCycle(wypelnienienew)  # Ustaw nową wartość wypełnienia
-        wypelnienieold = wypelnienienew
-        time.sleep(0.1)
+        if updown == True:
+            dioda.ChangeDutyCycle(wypelnienie)
+            wypelnienie = wypelnienie+2
+            if wypelnienie == 100:
+                updown = False
+        else:
+            dioda.ChangeDutyCycle(wypelnienie)
+            wypelnienie = wypelnienie - 2
+            if wypelnienie == 2:
+                updown = True
+        time.sleep(0.05)
 except KeyboardInterrupt:
     print('Koniec')
 
