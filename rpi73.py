@@ -49,6 +49,8 @@
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import time
+import adafruit_dht
+import board
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -56,6 +58,8 @@ GPIO.setup(21, GPIO.OUT)
 
 Alarm = False
 Brightness = 0
+
+dht_device = adafruit_dht.DHT11(board.D26)
 
 
 def on_message(client, userdata, message):
@@ -116,7 +120,9 @@ try:
                     client.publish("BHL/LED/getOn", "0", qos=1, retain=True)
                 oldBrightness = Brightness
 
-
+        temperature = dht_device.temperature
+        humidity = dht_device.humidity
+        print(temperature, humidity, "\n")
 
 except KeyboardInterrupt:
     print('Koniec')
