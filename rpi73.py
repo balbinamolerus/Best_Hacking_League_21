@@ -53,7 +53,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(21, GPIO.OUT)
 
-dioda = GPIO.PWM(21, 8000)  # Nowa instancja PWM
+dioda = GPIO.PWM(21, 980)  # Nowa instancja PWM
 wypelnienienew = 0  # Wypełnienie sygnału PWM
 wypelnienieold = 0
 dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
