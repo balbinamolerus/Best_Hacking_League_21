@@ -9,15 +9,15 @@ client.connect(broker_address, 1883)
 client.loop_start()
 
 button = Button(21)
-time=0
+
 while True:
     x = 0
     time = 0
-    while time<1000:
+    while time<100:
         if button.is_pressed == False:
             x=x+1
         sleep(0.1)
-        if x > 800:
+        if x > 50:
             print('alarm')
             #client.publish("BHL/FattyAlarm/Alarm", "1", qos=1, retain=True)
             x = 0
