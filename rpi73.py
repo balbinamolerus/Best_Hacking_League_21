@@ -83,18 +83,19 @@ dioda.start(wypelnienienew)  # Uruchomienie sygnału PWM
 updown = True
 wypelnienie = 0
 try:
-    while Alarm:
-        if updown == True:
-            dioda.ChangeDutyCycle(wypelnienie)
-            wypelnienie = wypelnienie+2
-            if wypelnienie == 100:
-                updown = False
-        else:
-            dioda.ChangeDutyCycle(wypelnienie)
-            wypelnienie = wypelnienie - 2
-            if wypelnienie == 2:
-                updown = True
-        time.sleep(0.01)
+    while True:
+        if Alarm:
+            if updown == True:
+                dioda.ChangeDutyCycle(wypelnienie)
+                wypelnienie = wypelnienie+2
+                if wypelnienie == 100:
+                    updown = False
+            else:
+                dioda.ChangeDutyCycle(wypelnienie)
+                wypelnienie = wypelnienie - 2
+                if wypelnienie == 2:
+                    updown = True
+            time.sleep(0.01)
 except KeyboardInterrupt:
     print('Koniec')
 
