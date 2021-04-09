@@ -2,6 +2,8 @@ import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import time
 
+import urllib
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
@@ -23,5 +25,15 @@ try:
             print('alarm')
             client.publish("BHL/FireAlarm/Alarm", "1", qos=1, retain=True)
         before = GPIO.input(2)
+
+        try:
+            html = urllib.urlopen('http://192.168.1.82')
+
+            htmltext = html.read()
+            print(htmltext)
+        except:
+            print('error opening link')
+
+
 except KeyboardInterrupt:
     print('Koniec')
