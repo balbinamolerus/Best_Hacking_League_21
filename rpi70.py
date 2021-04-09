@@ -19,7 +19,7 @@ while True:
         sleep(0.05)
         if x > 50:
             print('alarm')
-            #client.publish("BHL/FattyAlarm/Alarm", "1", qos=1, retain=True)
+            client.publish("BHL/FattyAlarm/Alarm", "1", qos=1, retain=True)
             x = 0
             sleep(20)
         time = time + 1
