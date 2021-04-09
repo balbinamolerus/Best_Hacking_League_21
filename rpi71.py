@@ -22,7 +22,7 @@ while True:
       client.publish("BHL/MoveAlarm/Alarm", "1", qos=1, retain=True)
       x=0
       print(t)
-      sleep(10)
+      sleep(20)
     t=t+1
 
 
