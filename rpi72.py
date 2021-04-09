@@ -26,13 +26,13 @@ try:
             client.publish("BHL/FireAlarm/Alarm", "1", qos=1, retain=True)
         before = GPIO.input(2)
 
-        try:
-            html = urllib.urlopen('192.168.1.82')
+        # try:
+        html = urllib.request.urlopen('http://192.168.1.82/')
 
-            htmltext = html.read()
-            print(htmltext)
-        except:
-            print('error opening link')
+        htmltext = html.read()
+        print(htmltext)
+        # except:
+        #     print('error opening link')
 
 
 except KeyboardInterrupt:
