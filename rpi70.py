@@ -9,7 +9,8 @@ client.connect(broker_address, 1883)
 client.loop_start()
 
 button = Button(21)
-
+last_button = True
+open_count = False
 while True:
     x = 0
     time = 0
@@ -24,3 +25,11 @@ while True:
             sleep(20)
         time = time + 1
 
+
+    while True:
+        if not button.is_pressed and last_button:
+            client.publish("BHL/Fridge", "1", qos=1, retain=True)
+
+
+        if button.is_pressed and not last_button:
+            client.publish("BHL/Fridge", "0", qos=1, retain=True)
