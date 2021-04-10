@@ -20,6 +20,5 @@ while True:
         GPIO.output(2, GPIO.LOW)
         sleep(15)
     else:
-        print('ok')
         GPIO.output(2, GPIO.HIGH)
 
