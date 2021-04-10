@@ -13,7 +13,7 @@ button = Button(21)
 last_button = True
 
 open_count = False
-
+starttime = time.time()
 while True:
     # x = 0
     # time = 0
@@ -40,7 +40,7 @@ while True:
             client.publish("BHL/FridgeAlarm/Alarm", "0", qos=1, retain=True)
             open_count = False
 
-        if time.time() - starttime > 10 and open_count:
+        if open_count and time.time() - starttime > 10:
             client.publish("BHL/FridgeAlarm/Alarm", "1", qos=1, retain=True)
 
         last_button = new_button
