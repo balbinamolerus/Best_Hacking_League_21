@@ -16,5 +16,5 @@ while True:
     print('alarm')
     client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
     sleep(3)
-    lastvalue=new_value
+  lastvalue = new_value
 
