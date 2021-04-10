@@ -26,6 +26,7 @@ while True:
 
     if new_button and not last_button:
         client.publish("BHL/Fridge", "0", qos=1, retain=True)
+        client.publish("BHL/FridgeAlarm/Alarm", "0", qos=1, retain=True)
         open_count = False
 
     if open_count and time.time() - starttime > 10:
