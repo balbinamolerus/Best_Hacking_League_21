@@ -14,11 +14,10 @@ GPIO.setup(17, GPIO.IN)
 GPIO.setup(2, GPIO.OUT)
 while True:
     now = GPIO.input(17)
-    sleep(1)
+    sleep(0.2)
     if now == 0:
         print('alarm')
         GPIO.output(2, GPIO.LOW)
-        sleep(15)
     else:
         GPIO.output(2, GPIO.HIGH)
 
