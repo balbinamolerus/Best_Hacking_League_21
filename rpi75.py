@@ -1,20 +1,20 @@
 from time import sleep
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
-def on_message(client, userdata, message):
-    if message.topic == "BHL/MoveAlarm/Alarm":
-        t=0
-        GPIO.output(2, GPIO.LOW)
-        while t<1000:
-            t=t+1
+#def on_message(client, userdata, message):
+#    if message.topic == "BHL/MoveAlarm/Alarm":
+#        t=0
+#        GPIO.output(2, GPIO.LOW)
+#        while t<100000:
+#            t=t+1
 broker_address = "192.168.1.200"
 client = mqtt.Client("Napiecie_w_sieci")
-client.on_message = on_message
+#client.on_message = on_message
 client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 client.connect(broker_address, 1883)
 
 client.loop_start()
-client.subscribe([("BHL/MoveAlarm/Alarm", 1)])
+#client.subscribe([("BHL/MoveAlarm/Alarm", 1)])
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
