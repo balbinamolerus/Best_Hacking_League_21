@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import time
 import adafruit_dht
 import board
-import pygame
+# import pygame
 
 
 GPIO.setmode(GPIO.BCM)
