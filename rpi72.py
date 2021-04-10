@@ -54,6 +54,7 @@ try:
         # except:
         #     print('error opening link')
         before_water = now_water
+        print("dupa")
         time.sleep(1)
 
 
