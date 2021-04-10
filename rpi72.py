@@ -9,7 +9,7 @@ GPIO.setwarnings(False)
 
 GPIO.setup(2, GPIO.IN)
 
-pygame.mixer.init(devicename=None)
+pygame.mixer.init()
 pygame.mixer.music.load('alarm.mp3')
 pygame.mixer.music.set_volume(0.5)
 
