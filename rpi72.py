@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 import time
-import pygame
+
 import urllib
 
 GPIO.setmode(GPIO.BCM)
@@ -9,21 +9,14 @@ GPIO.setwarnings(False)
 
 GPIO.setup(2, GPIO.IN)
 
-pygame.mixer.init()
-pygame.mixer.music.load('alarm.mp3')
-pygame.mixer.music.set_volume(0.5)
 
 
 def on_message(client, userdata, message):
     if message.topic == "BHL/MoveAlarm/Alarm" or message.topic == "BHL/WaterAlarm/Alarm" or message.topic == "BHL/FireAlarm/Alarm":
-
-        if not pygame.mixer.music.get_busy():
-            pygame.mixer.music.play(loops=-1)
+        client.publish("BHL/PhoneAlarm", "1", qos=1, retain=True)
 
     if message.topic == "BHL/StopAlarm":
-
-        if pygame.mixer.music.get_busy():
-            pygame.mixer.music.stop()
+        client.publish("BHL/PhoneAlarm", "0", qos=1, retain=True)
 
 
 broker_address = "192.168.1.200"
