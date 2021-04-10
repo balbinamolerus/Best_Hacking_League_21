@@ -16,7 +16,7 @@ Brightness = 0
 dht_device = adafruit_dht.DHT11(board.D26)
 pygame.mixer.init()
 pygame.mixer.music.load('alarm.mp3')
-pygame.mixer.music.set_volume(0.1)
+pygame.mixer.music.set_volume(1.0)
 
 
 def on_message(client, userdata, message):
