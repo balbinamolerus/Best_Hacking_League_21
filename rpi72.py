@@ -46,7 +46,7 @@ try:
         htmltext = html.read()
         now_water = int(htmltext.decode('utf-8'))
 
-        # print(type(htmltext),htmltext)
+        print(now_water)
 
         if now_water > 300 and before_water <= 300:
             print('water alarm')
@@ -54,7 +54,7 @@ try:
         # except:
         #     print('error opening link')
         before_water = now_water
-        print("dupa")
+        )
         time.sleep(1)
 
 
