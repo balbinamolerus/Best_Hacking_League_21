@@ -13,7 +13,8 @@ lastvalue = False
 while True:
   new_value=pir.wait_for_motion()
   if new_value and not lastvalue:
-  print('alarm')
-  client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
-  sleep(3)
+    print('alarm')
+    client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
+    sleep(3)
+    lastvalue=new_value
 
