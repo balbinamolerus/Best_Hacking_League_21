@@ -39,5 +39,5 @@ while True:
         open_count = False
         client.publish("BHL/FridgeAlarm/Alarm", "0", qos=1, retain=True)
 
-
+    print(new_button)
     last_button = new_button
