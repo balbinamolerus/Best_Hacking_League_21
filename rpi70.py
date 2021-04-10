@@ -35,6 +35,7 @@ while True:
 
     if new_button and fridge_alarm:
         fridge_alarm = False
+        open_count = False
         client.publish("BHL/FridgeAlarm/Alarm", "0", qos=1, retain=True)
 
 
