@@ -41,3 +41,4 @@ while True:
 
     print(new_button)
     last_button = new_button
+    time.sleep(1)
