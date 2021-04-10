@@ -16,6 +16,8 @@ while True:
     now = GPIO.input(4)
     if now == 1:
         print('alarm')
+        sleep(1)
     else:
         print('xD')
+        sleep(1)
     before = GPIO.input(4)
