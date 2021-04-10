@@ -9,20 +9,11 @@ client.connect(broker_address, 1883)
 client.loop_start()
 
 pir = MotionSensor(4)
-
+lastvalue = False
 while True:
-  x=0
-  t=0
-  while t<50:
-    if pir.wait_for_motion()==True:
-      x=x+1
-    sleep(0.1)
-    if x>20:
-      print('alarm')
-      client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
-      x=0
-      print(t)
-      sleep(20)
-    t=t+1
-
+  new_value=pir.wait_for_motion()
+  if new_value and not lastvalue:
+  print('alarm')
+  client.publish("BHL/MoveDetected/Alarm", "1", qos=1, retain=True)
+  sleep(3)
 
