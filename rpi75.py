@@ -21,3 +21,4 @@ while True:
     else:
         print('ok')
         GPIO.output(2, GPIO.HIGH)
+
