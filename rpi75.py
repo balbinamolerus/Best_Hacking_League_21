@@ -10,10 +10,10 @@ client.loop_start()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(4, GPIO.IN)
+GPIO.setup(17, GPIO.IN)
 
 while True:
-    now = GPIO.input(4)
+    now = GPIO.input(17)
     print(now)
     if now == 1:
         print('alarm')
