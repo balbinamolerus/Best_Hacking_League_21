@@ -18,6 +18,7 @@ while True:
     if now == 0:
         print('alarm')
         GPIO.output(2, GPIO.LOW)
+        sleep(15)
     else:
         print('ok')
         GPIO.output(2, GPIO.HIGH)
