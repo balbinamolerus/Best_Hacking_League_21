@@ -1,11 +1,12 @@
 from time import sleep
 import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
-
-
-
+def on_message(client, userdata, message):
+    if message.topic == "BHL/MoveAlarm/Alarm":
+        GPIO.output(2, GPIO.LOW)
 broker_address = "192.168.1.200"
 client = mqtt.Client("Control_Interface")
+client.on_message = on_message
 client.username_pw_set("Raspberry_Pi", "Rpi_Raspberry_Python")
 client.connect(broker_address, 1883)
 
