@@ -9,6 +9,6 @@ client.connect(broker_address, 1883)
 client.loop_start()
 
 button = Button(4)
-
-if button.is_pressed==False:
-    print("Alarm")
+while True:
+    if button.is_pressed==True:
+        print("Alarm")
