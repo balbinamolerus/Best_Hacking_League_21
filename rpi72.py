@@ -38,6 +38,7 @@ try:
         if now == 1 and before == 0:
             print('alarm')
             client.publish("BHL/FireAlarm/Alarm", "1", qos=1, retain=True)
+            print('alarm')
         before = GPIO.input(2)
 
         # try:
