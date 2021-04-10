@@ -39,14 +39,15 @@ try:
             print('alarm')
             client.publish("BHL/FireAlarm/Alarm", "1", qos=1, retain=True)
             print('alarm')
-        before = GPIO.input(2)
+        before = now
 
-        # try:
-        html = urllib.request.urlopen('http://192.168.1.82/')
+        try:
+            html = urllib.request.urlopen('http://192.168.1.82/')
 
-        htmltext = html.read()
-        now_water = int(htmltext.decode('utf-8'))
-
+            htmltext = html.read()
+            now_water = int(htmltext.decode('utf-8'))
+        except:
+            pass
         print(now_water)
 
         if now_water > 300 and before_water <= 300:
