@@ -72,8 +72,11 @@ def on_message(client, userdata, message):
     if message.topic == "BHL/StopAlarm":
         Alarm = False
 
-    if message.topic == "BHL/LED/setOn" and str(message.payload.decode("utf-8")) == "0":
-        Brightness = 0
+    if message.topic == "BHL/LED/setOn":
+        if str(message.payload.decode("utf-8")) == "0":
+            Brightness = 0
+        if str(message.payload.decode("utf-8")) == "1" and not Brightness:
+            Brightness = 100
 
     if message.topic == "BHL/LED/setBrightness":
         Brightness = int(message.payload.decode("utf-8"))
