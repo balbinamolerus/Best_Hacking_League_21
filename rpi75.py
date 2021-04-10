@@ -11,7 +11,7 @@ client.loop_start()
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(17, GPIO.IN)
-GPIO.setup(2, GPIO.OUTPUT)
+GPIO.setup(2, GPIO.OUT)
 while True:
     now = GPIO.input(17)
     sleep(1)
